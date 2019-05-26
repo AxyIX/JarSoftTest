@@ -1,5 +1,7 @@
 package main.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,7 +19,8 @@ public class Request extends Deleteable {
     private String ipAddress;
     private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "banner_id")
     private Banner banner;
 

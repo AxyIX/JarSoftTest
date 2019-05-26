@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(path = "/category")
+@RequestMapping(path = "/categorys")
 public class CategoryController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class CategoryController {
         }
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping
     public @ResponseBody Iterable<Category>  getAllCategories(){
         return categoryRepo.findAll();
     }
