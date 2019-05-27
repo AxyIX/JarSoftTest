@@ -50,4 +50,12 @@ public class Category extends Deleteable {
     public void setBanners(Set<Banner> banners) {
         this.banners = banners;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", reqName='" + reqName + '\'' +
+                '}';
+    }
 }

@@ -58,4 +58,14 @@ public class Request extends Deleteable {
     public void setBanner(Banner banner) {
         this.banner = banner;
     }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "userAgent='" + userAgent + '\'' +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", date=" + date +
+                ", banner=" + banner.getName() +
+                '}';
+    }
 }

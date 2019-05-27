@@ -67,4 +67,14 @@ public class Banner extends Deleteable {
     public void setRequests(List<Request> requests) {
         this.requests = requests;
     }
+
+    @Override
+    public String toString() {
+        return "Banner{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", content='" + content + '\'' +
+                ", category=" + category.getName() +
+                '}';
+    }
 }

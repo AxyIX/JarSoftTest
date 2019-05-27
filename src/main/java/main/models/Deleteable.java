@@ -9,6 +9,6 @@ import javax.persistence.MappedSuperclass;
 public abstract class Deleteable {
 
     @JsonIgnore
-    @Column(name = "deleted")
+    @Column(name = "deleted", columnDefinition = "boolean default false")
     private boolean deleted = false;
 }
