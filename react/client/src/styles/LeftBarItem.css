@@ -1,0 +1,7 @@
+.left-bar-item {
+ padding: 2px;
+}
+
+.left-bar-item > span {
+    cursor: pointer;
+}

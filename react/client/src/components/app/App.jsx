@@ -4,13 +4,13 @@ import {Wrapper} from "../page/Wrapper";
 import {LeftBar} from "../page/LeftBar";
 import {ContentContainer} from "../page/ContentContainer";
 
-class MyComponent extends Component {
+class App extends Component {
   render() {
     return (
       <Wrapper>
         <Toolbar items={["categorys", "banners"]}/>
         <Wrapper horizontal>
-          <LeftBar/>
+          <LeftBar title={"dro"} items={["hooh","lalalal","sdawfwegwg","dfweff"]}/>
           <ContentContainer title={"asdasda"}>
 
           </ContentContainer>
@@ -20,4 +20,4 @@ class MyComponent extends Component {
   }
 }
 
-export default MyComponent;
+export default App;
