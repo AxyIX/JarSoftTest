@@ -36,9 +36,13 @@ public class BannerController {
         }
     }
 
-    @GetMapping
+    @GetMapping(path = "/all")
     public @ResponseBody Iterable<Banner> getAllBanners(){
         return bannerRepo.findAll();
     }
 
+    @GetMapping
+    public @ResponseBody String getIndex() {
+        return "index";
+    }
 }

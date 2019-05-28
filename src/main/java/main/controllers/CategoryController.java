@@ -35,8 +35,13 @@ public class CategoryController {
         }
     }
 
-    @GetMapping
+    @GetMapping(path = "/all")
     public @ResponseBody Iterable<Category>  getAllCategories(){
         return categoryRepo.findAll();
+    }
+
+    @GetMapping
+    public @ResponseBody String getIndex() {
+        return "index";
     }
 }
