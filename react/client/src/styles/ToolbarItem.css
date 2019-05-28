@@ -10,3 +10,7 @@
     display: table-cell;
     width: 15px;
 }
+
+.toolbar-item-chosen {
+    color: #25c3c6;
+}
