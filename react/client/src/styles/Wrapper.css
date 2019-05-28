@@ -1,0 +1,15 @@
+.wrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    align-items: stretch;
+    height: calc(100% - 42px);
+}
+
+.wrapper-horizontal {
+    display: flex;
+    flex-grow: 1;
+}
+
+
