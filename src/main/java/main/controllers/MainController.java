@@ -5,12 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 @Controller
-@RequestMapping(path = "/")
 public class MainController {
-    @RequestMapping
-    public @ResponseBody
-    String getRoot (){
-        return "index";
+    @RequestMapping(path = "/")
+    public String getRoot (Map<String, Object> model){
+        return "forward:index.html";
     }
 }

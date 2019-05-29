@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 @Controller
-@RequestMapping(path = "/categorys")
 public class CategoryController {
 
     @Autowired
     private CategoryRepo categoryRepo;
 
-    @GetMapping(path = "/add")
+    @GetMapping(path = "/categories/add")
     public ResponseEntity<String> addNewCategory (@RequestParam String name, @RequestParam String reqName){
         if(categoryRepo.findByName(name) == null){
             if (categoryRepo.findByReqName(reqName) == null){
@@ -35,13 +36,13 @@ public class CategoryController {
         }
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/categories/all")
     public @ResponseBody Iterable<Category>  getAllCategories(){
         return categoryRepo.findAll();
     }
 
-    @GetMapping
-    public @ResponseBody String getIndex() {
-        return "index";
+    @RequestMapping(path = "/categories")
+    public String getIndex(Map<String, Object> model) {
+        return "forward:index.html";
     }
 }

@@ -8,12 +8,11 @@ export const ToolbarItem = (props) => {
     const {
         title,
         onClick,
-        id,
         isChosen
     } = props;
 
     return(
-        <div className={classNames("toolbar-item", isChosen ? "toolbar-item-chosen" : "")} onClick={() => onClick(id)}>
+        <div className={classNames("toolbar-item", isChosen ? "toolbar-item-chosen" : "")} onClick={() => onClick(title)}>
             <div className="triangle-container">
                 {isChosen ? <Triangle/> : null}
             </div>

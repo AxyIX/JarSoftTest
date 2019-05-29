@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 @Controller
-@RequestMapping(path = "/banners")
 public class BannerController {
     @Autowired
     private BannerRepo bannerRepo;
@@ -21,7 +22,7 @@ public class BannerController {
     @Autowired
     private CategoryRepo categoryRepo;
 
-    @GetMapping(path = "/add")
+    @GetMapping(path = "/banners/add")
     public ResponseEntity<String> addNewBanner(@RequestParam String name, @RequestParam Double price, @RequestParam String content, @RequestParam String category){
         if (bannerRepo.findByName(name) == null){
             Banner banner = new Banner();
@@ -36,13 +37,13 @@ public class BannerController {
         }
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/banners/all")
     public @ResponseBody Iterable<Banner> getAllBanners(){
         return bannerRepo.findAll();
     }
 
-    @GetMapping
-    public @ResponseBody String getIndex() {
-        return "index";
+    @RequestMapping(path = "/banners")
+    public String getIndex(Map<String, Object> model) {
+        return "forward:index.html";
     }
 }
