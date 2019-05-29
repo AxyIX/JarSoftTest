@@ -18,6 +18,10 @@ export class LeftBar extends Component {
     });
   }
 
+  onClickItem = (item) => {
+
+  }
+
   render() {
 
     const {
@@ -28,7 +32,7 @@ export class LeftBar extends Component {
     return (
       <div className="left-bar">
         <div className="left-bar-title">
-          {title ? title : ""}
+          {title ? (title + ":") : ""}
         </div>
         <div className="left-bar-input">
           <div className="search-icon-container">
@@ -38,11 +42,14 @@ export class LeftBar extends Component {
                  placeholder={"Enter " + title.toLowerCase() + " name"}/>
         </div>
         <div className="left-bar-items">
-          {items && items.filter((item, i) => {
-            return item.toLowerCase().includes(this.state.filter.toLowerCase());
-          }).map((item, i) => {
-            return <LeftBarItem key={i} item={item}/>;
-          })
+          {
+            items && items.length > 0 ? items.filter((item, i) => {
+              return item.name.toLowerCase().includes(this.state.filter.toLowerCase());
+            }).map((item, i) => {
+              return <LeftBarItem key={i} item={item} onClick={this.onClickItem}/>;
+            })
+              :
+              <div className="left-bar-load">{"loading..."}</div>
           }
         </div>
       </div>

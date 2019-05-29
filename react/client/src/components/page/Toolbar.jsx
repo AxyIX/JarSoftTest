@@ -1,31 +1,23 @@
 import React, {Component} from "react";
-import App from "../app/App";
 import '../../styles/Toolbar.css';
 import {ToolbarItem} from "../common/ToolbarItem";
 
 export class Toolbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentTab: App.TOOLBAR_ELEMENTS[0]
-    };
   }
 
   onClick = (tab) => {
-    this.setState({
-      currentTab: tab
-    });
-    this.props.onChange(tab);
+    if (tab !== this.props.currentTab){
+      this.props.onChange(tab);
+    }
   }
 
   render() {
     const {
-      items
-    } = this.props;
-
-    const {
+      items,
       currentTab
-    } = this.state;
+    } = this.props;
 
     return (
       <div>

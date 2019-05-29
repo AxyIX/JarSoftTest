@@ -42,6 +42,11 @@
     flex-direction: column;
 }
 
+.left-bar-load {
+    text-align: center;
+    padding-top: 20px;
+}
+
 .search-icon-container {
     display: inline-block;
     height: 16px;

@@ -8,7 +8,7 @@ export const LeftBarItem = (props) => {
 
   return (
     <div className="left-bar-item">
-      <span>{item}</span>
+      <span>{item.name}</span>
     </div>
   );
 }
