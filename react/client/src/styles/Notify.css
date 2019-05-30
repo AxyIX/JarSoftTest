@@ -1,0 +1,15 @@
+.notify-container {
+    height: 100px;
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.notify-content-error {
+    background-color: #ff3355;
+    color: white;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: center;
+    padding-left: 40px;
+}

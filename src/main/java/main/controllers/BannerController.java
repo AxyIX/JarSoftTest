@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -22,28 +19,37 @@ public class BannerController {
     @Autowired
     private CategoryRepo categoryRepo;
 
-    @GetMapping(path = "/banners/add")
-    public ResponseEntity<String> addNewBanner(@RequestParam String name, @RequestParam Double price, @RequestParam String content, @RequestParam String category){
-        if (bannerRepo.findByName(name) == null){
-            Banner banner = new Banner();
-            banner.setName(name);
-            banner.setPrice(price);
-            banner.setContent(content);
-            banner.setCategory(categoryRepo.findByName(category));
-            bannerRepo.save(banner);
+    @PostMapping(path = "category/{categoryId}/banners")
+    public ResponseEntity<String> addNewBanner(@PathVariable(value = "categoryId") Integer categoryId,
+                                               @RequestBody Map<String, Object> banner){
+
+        if (banner.get("name").toString().isEmpty()){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner name can't be empty!");
+        }
+        if (banner.get("price").toString().isEmpty()){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner price can't be empty!");
+        }
+        if (banner.get("content").toString().isEmpty() ){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner content can't be empty!");
+        }
+
+        Double parsedPrice;
+        try {
+            parsedPrice = Double.parseDouble(banner.get("price").toString());
+        } catch (NumberFormatException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner price must be decimal!");
+        }
+
+        if (bannerRepo.findByName(banner.get("name").toString()) == null){
+            bannerRepo.save(new Banner((String) banner.get("name"), parsedPrice, banner.get("content").toString(), categoryRepo.findById(categoryId).get()));
             return ResponseEntity.status(HttpStatus.OK).body("");
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner with name \"" + name + "\" is already exist");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner with name \"" + banner.get("name") + "\" is already exist");
         }
     }
 
-    @GetMapping(path = "/banners/all")
+    @GetMapping(path = "/banners")
     public @ResponseBody Iterable<Banner> getAllBanners(){
         return bannerRepo.findAll();
-    }
-
-    @RequestMapping(path = "/banners")
-    public String getIndex(Map<String, Object> model) {
-        return "forward:index.html";
     }
 }

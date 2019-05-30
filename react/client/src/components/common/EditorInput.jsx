@@ -4,13 +4,10 @@ import "../../styles/EditorInput.css";
 export class EditorInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: ""
-    }
   }
 
-  onChange = (e) => {
-
+  onChange = (event) => {
+    this.props.onChange(event.target.value, this.props.id);
   }
 
   render() {
@@ -19,7 +16,7 @@ export class EditorInput extends Component {
       id
     } = this.props;
     return (
-      <input type={"text"} id={id} className='editor-input' defaultValue={value} onChange={(e) => this.onChange(e)}/>
+      <input type={"text"} id={id} className='editor-input' defaultValue={value} onChange={(e)=>this.onChange(e)}/>
     );
   }
 }

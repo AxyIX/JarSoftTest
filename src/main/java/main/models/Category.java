@@ -13,7 +13,7 @@ public class Category extends Deleteable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
     @Column(name = "req_name")
@@ -25,6 +25,14 @@ public class Category extends Deleteable {
 
 
     public Category() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

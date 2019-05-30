@@ -5,6 +5,15 @@ export const get = async (url) => {
     const result = await axios.get(url);
     return result.data;
   } catch (e) {
-    console.log(e);
+    throw e.response.data;
+  }
+}
+
+export const post = async (url, data) => {
+  try {
+    const result = await axios.post(url, data);
+    return result.data;
+  } catch (e) {
+    throw e.response.data;
   }
 }

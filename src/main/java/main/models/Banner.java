@@ -13,7 +13,7 @@ public class Banner extends Deleteable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private double price;
     private String content;
@@ -27,6 +27,21 @@ public class Banner extends Deleteable {
     private List<Request> requests;
 
     public Banner(){}
+
+    public Banner(String name, double price, String content, Category category) {
+        this.name = name;
+        this.price = price;
+        this.content = content;
+        this.category = category;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

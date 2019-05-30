@@ -2,10 +2,8 @@ import React, {Component} from "react";
 import {Toolbar} from "../page/Toolbar";
 import {Wrapper} from "../page/Wrapper";
 import {LeftBar} from "../page/LeftBar";
-import {ContentContainer} from "../page/ContentContainer";
 import {loadBanners, loadCategories} from "../API/API";
 import {BannerEditor} from "../common/BannerEditor";
-import axios from "axios";
 
 class App extends Component {
 
@@ -20,11 +18,16 @@ class App extends Component {
     this.state = {
       currentTab: App.TOOLBAR_ELEMENTS[0],
       leftBarItems: [],
-      categories: []
+      categories: [],
+      item: null
     };
   }
 
   componentDidMount() {
+    this.loadData(this.state.currentTab);
+  }
+
+  reloadData = () => {
     this.loadData(this.state.currentTab);
   }
 
@@ -34,15 +37,13 @@ class App extends Component {
         this.setState({
           leftBarItems: []
         });
-        axios.all([
-          loadBanners(),
-          loadCategories()
-        ]).then((data) => {
+        loadBanners().then((data) => {
           this.setState({
-            leftBarItems: data[0],
-            categories: data[1]
+            leftBarItems: data
           });
-        }).catch((e)=> { console.log(e); });
+        }).catch((e) => {
+          console.log(e);
+        });
         break;
 
       case App.TOOLBAR_ELEMENTS[1]:
@@ -53,7 +54,9 @@ class App extends Component {
           this.setState({
             leftBarItems: categories
           });
-        }).catch((e)=> { console.log(e); });
+        }).catch((e) => {
+          console.log(e);
+        });
         break;
     }
   }
@@ -63,26 +66,42 @@ class App extends Component {
     this.loadData(tab);
   }
 
-  onItemChange = () => {
+  renderEditor() {
+    switch (this.state.tab) {
+      case App.TOOLBAR_ELEMENTS[0]:
+        if (this.state.item){
+          return <BannerEditor item={this.state.item} onSave={this.reloadData} categories={this.state.categories}/>
+        }
+        break;
+      case App.TOOLBAR_ELEMENTS[1]:
+        break;
+    }
+    return null;
+  }
 
+  onItemClick = (item) => {
+    if (item) {
+      this.setState(prev=>({
+
+      }));
+    }
   }
 
   render() {
 
     const {
       leftBarItems,
-      currentTab,
-      categories
+      currentTab
     } = this.state;
 
     return (
       <Wrapper>
         <Toolbar currentTab={currentTab} items={App.TOOLBAR_ELEMENTS} onChange={this.onTabChange}/>
         <Wrapper horizontal>
-          <LeftBar title={currentTab} items={leftBarItems}/>
-          <ContentContainer title={"asdasda"}>
-            <BannerEditor categories={categories}/>
-          </ContentContainer>
+          <LeftBar title={currentTab} items={leftBarItems} onItemClick={this.onItemClick}/>
+          {
+            this.renderEditor()
+          }
         </Wrapper>
       </Wrapper>
     );

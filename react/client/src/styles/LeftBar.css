@@ -4,6 +4,7 @@
     margin-right: 20px;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .left-bar-title {
@@ -41,6 +42,8 @@
 .left-bar-items {
     display: flex;
     flex-direction: column;
+    overflow: auto;
+    height: 100%;
 }
 
 .left-bar-load {

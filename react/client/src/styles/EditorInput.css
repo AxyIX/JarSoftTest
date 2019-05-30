@@ -1,7 +1,7 @@
 .editor-input {
     border: 1px solid black;
     width: 400px;
-    height: 30px;
+    height: 34px;
     font-size: 15px;
     box-shadow: none;
     outline: none;
@@ -19,8 +19,6 @@
 }
 
 select.editor-input {
-    height: 34px;
-    width: 400px;
     padding-left: 0;
 }
 

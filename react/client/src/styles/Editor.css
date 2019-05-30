@@ -1,7 +1,12 @@
 .editor-items-container {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
+.editor-fields{
+    height: 100%;
+}
+
 
 .editor-item {
     text-align: center;
@@ -11,4 +16,13 @@
     padding: 20px;
     font-size: 15px;
     line-height: 34px;
+}
+
+.horizontal-space {
+    flex-grow: 1;
+}
+
+.editor-buttons-container {
+    display: flex;
+    flex-direction: row;
 }

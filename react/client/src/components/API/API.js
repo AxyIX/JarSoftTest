@@ -1,20 +1,17 @@
-import { get } from "./base";
+import { get, post } from "./base";
 
 
 export const loadBanners = async () => {
-  try {
-    const result = await get("/banners/all");
+    const result = await get("/banners");
     return result;
-  } catch (e) {
-    console.log(e);
-  }
 }
 
 export const loadCategories = async () => {
-  try {
-    const result = await get("/categories/all");
+    const result = await get("/categories");
     return result;
-  } catch (e) {
-    console.log(e);
-  }
+}
+
+export const saveBanner = async (banner, category) => {
+    const result = await post("/category/" + category + "/banners", banner);
+    return result;
 }
