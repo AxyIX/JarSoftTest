@@ -1,4 +1,4 @@
-'throwIfNamespace'
+import {Footer} from "../common/Footer";
 import React, {Component} from "react";
 import "../../styles/LeftBar.css";
 import {ReactComponent as Search} from "../../icon/search.svg";
@@ -52,6 +52,9 @@ export class LeftBar extends Component {
               <div className="left-bar-load">{"loading..."}</div>
           }
         </div>
+        <Footer>
+
+        </Footer>
       </div>
     );
   }

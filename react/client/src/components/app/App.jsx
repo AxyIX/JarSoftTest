@@ -4,6 +4,8 @@ import {Wrapper} from "../page/Wrapper";
 import {LeftBar} from "../page/LeftBar";
 import {ContentContainer} from "../page/ContentContainer";
 import {loadBanners, loadCategories} from "../API/API";
+import {BannerEditor} from "../common/BannerEditor";
+import axios from "axios";
 
 class App extends Component {
 
@@ -17,7 +19,8 @@ class App extends Component {
 
     this.state = {
       currentTab: App.TOOLBAR_ELEMENTS[0],
-      leftBarItems: []
+      leftBarItems: [],
+      categories: []
     };
   }
 
@@ -31,21 +34,26 @@ class App extends Component {
         this.setState({
           leftBarItems: []
         });
-        loadBanners().then(data => {
+        axios.all([
+          loadBanners(),
+          loadCategories()
+        ]).then((data) => {
           this.setState({
-            leftBarItems: data
+            leftBarItems: data[0],
+            categories: data[1]
           });
-        });
+        }).catch((e)=> { console.log(e); });
         break;
+
       case App.TOOLBAR_ELEMENTS[1]:
         this.setState({
           leftBarItems: []
         });
-        loadCategories().then(data => {
+        loadCategories().then(categories => {
           this.setState({
-            leftBarItems: data
+            leftBarItems: categories
           });
-        });
+        }).catch((e)=> { console.log(e); });
         break;
     }
   }
@@ -63,7 +71,8 @@ class App extends Component {
 
     const {
       leftBarItems,
-      currentTab
+      currentTab,
+      categories
     } = this.state;
 
     return (
@@ -72,7 +81,7 @@ class App extends Component {
         <Wrapper horizontal>
           <LeftBar title={currentTab} items={leftBarItems}/>
           <ContentContainer title={"asdasda"}>
-
+            <BannerEditor categories={categories}/>
           </ContentContainer>
         </Wrapper>
       </Wrapper>

@@ -1,0 +1,14 @@
+.editor-items-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-item {
+    text-align: center;
+    vertical-align: center;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    font-size: 15px;
+    line-height: 34px;
+}

@@ -1,0 +1,8 @@
+.vertical-space{
+    flex-grow: 1;
+}
+
+.footer {
+    height: 40px;
+    background-color: #25c3c6;
+}

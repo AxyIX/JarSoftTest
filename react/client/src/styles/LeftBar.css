@@ -2,12 +2,12 @@
     border: 1px solid black;
     width: 300px;
     margin-right: 20px;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .left-bar-title {
-    padding-top: 6px;
-    padding-bottom: 5px;
+    padding: 11px 10px 10px 10px;
     text-align: center;
     font-size: 20px;
 }
@@ -17,6 +17,7 @@
     border: 1px solid black;
     border-right: none;
     border-left: none;
+    margin-bottom: 20px;
 }
 
 .left-bar-input > input {
