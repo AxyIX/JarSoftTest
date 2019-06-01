@@ -1,4 +1,4 @@
-import { get, post } from "./base";
+import {deleteRequest, get, post} from "./base";
 
 
 export const loadBanners = async () => {
@@ -13,5 +13,10 @@ export const loadCategories = async () => {
 
 export const saveBanner = async (banner, category) => {
     const result = await post("/category/" + category + "/banners", banner);
+    return result;
+}
+
+export const deleteBanner = async (id) => {
+    const result = await deleteRequest("/banners/"+id);
     return result;
 }

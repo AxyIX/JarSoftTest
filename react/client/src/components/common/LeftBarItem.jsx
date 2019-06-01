@@ -8,7 +8,7 @@ export const LeftBarItem = (props) => {
 
   return (
     <div className="left-bar-item">
-      <span>{item.name}</span>
+      <span onClick={()=>props.onClick(item)}>{item.name}</span>
     </div>
   );
 }

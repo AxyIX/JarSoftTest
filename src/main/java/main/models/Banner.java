@@ -1,12 +1,15 @@
 package main.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@SQLDelete(sql = "update banner SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Table(name = "BANNER")
 @Where(clause = "deleted=false")
 public class Banner extends Deleteable {

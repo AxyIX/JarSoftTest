@@ -21,35 +21,56 @@ public class BannerController {
 
     @PostMapping(path = "category/{categoryId}/banners")
     public ResponseEntity<String> addNewBanner(@PathVariable(value = "categoryId") Integer categoryId,
-                                               @RequestBody Map<String, Object> banner){
+                                               @RequestBody Map<String, String> banner) {
 
-        if (banner.get("name").toString().isEmpty()){
+        String id = banner.get("id");
+        String name = banner.get("name");
+        String price = banner.get("price");
+        String content = banner.get("content");
+
+        if (name.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner name can't be empty!");
         }
-        if (banner.get("price").toString().isEmpty()){
+        if (price.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner price can't be empty!");
         }
-        if (banner.get("content").toString().isEmpty() ){
+        if (content.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner content can't be empty!");
         }
 
         Double parsedPrice;
         try {
-            parsedPrice = Double.parseDouble(banner.get("price").toString());
-        } catch (NumberFormatException e){
+            parsedPrice = Double.parseDouble(price);
+        } catch (NumberFormatException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner price must be decimal!");
         }
 
-        if (bannerRepo.findByName(banner.get("name").toString()) == null){
-            bannerRepo.save(new Banner((String) banner.get("name"), parsedPrice, banner.get("content").toString(), categoryRepo.findById(categoryId).get()));
-            return ResponseEntity.status(HttpStatus.OK).body("");
+        if (id == null) {
+            if (bannerRepo.findByName(name) == null) {
+                bannerRepo.save(new Banner(name, parsedPrice, content, categoryRepo.findById(categoryId).get()));
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner with name \"" + name + "\" is already exist");
+            }
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner with name \"" + banner.get("name") + "\" is already exist");
+            Banner existedBanner = bannerRepo.findById(Integer.parseInt(id)).get();
+            existedBanner.setName(name);
+            existedBanner.setContent(content);
+            existedBanner.setPrice(parsedPrice);
+            existedBanner.setCategory(categoryRepo.findById(categoryId).get());
+            bannerRepo.save(existedBanner);
         }
+        return ResponseEntity.status(HttpStatus.OK).body("");
+    }
+
+    @DeleteMapping(path = "/banners/{bannerId}")
+    public ResponseEntity<String> deleteBanner(@PathVariable(value = "bannerId") Integer bannerId) {
+        bannerRepo.deleteById(bannerId);
+        return ResponseEntity.status(HttpStatus.OK).body("");
     }
 
     @GetMapping(path = "/banners")
-    public @ResponseBody Iterable<Banner> getAllBanners(){
+    public @ResponseBody
+    Iterable<Banner> getAllBanners() {
         return bannerRepo.findAll();
     }
 }

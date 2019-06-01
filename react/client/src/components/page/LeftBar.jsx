@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import "../../styles/LeftBar.css";
 import {ReactComponent as Search} from "../../icon/search.svg";
 import {LeftBarItem} from "../common/LeftBarItem";
+import {Button} from "../common/Button";
 
 export class LeftBar extends Component {
   constructor(props) {
@@ -19,14 +20,15 @@ export class LeftBar extends Component {
   }
 
   onClickItem = (item) => {
-
+    this.props.onItemClick(item);
   }
 
   render() {
 
     const {
       title,
-      items
+      items,
+      buttonName
     } = this.props;
 
     return (
@@ -44,16 +46,16 @@ export class LeftBar extends Component {
         <div className="left-bar-items">
           {
             items && items.length > 0 ? items.filter((item, i) => {
-              return item.name.toLowerCase().includes(this.state.filter.toLowerCase());
-            }).map((item, i) => {
-              return <LeftBarItem key={i} item={item} onClick={this.onClickItem}/>;
-            })
+                return item.name.toLowerCase().includes(this.state.filter.toLowerCase());
+              }).map((item, i) => {
+                return <LeftBarItem key={i} item={item} onClick={this.onClickItem}/>;
+              })
               :
               <div className="left-bar-load">{"loading..."}</div>
           }
         </div>
         <Footer>
-
+          <Button full color={'blue'} text={'Create new ' + buttonName} onClick={this.props.onCreateClick}/>
         </Footer>
       </div>
     );

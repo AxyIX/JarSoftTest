@@ -9,7 +9,7 @@ export const CategorySelector = (props) => {
 
   return (
     <select id={props.id}
-            defaultValue={props.value}
+            value={props.value && props.value.id}
             className="editor-input"
             onChange={e=>onChange(e)}>
       {props.items && props.items.map((item, key) => {

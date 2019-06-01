@@ -8,6 +8,6 @@ export const EditorTextField = (props) => {
   }
 
   return (
-    <textarea id={props.id} className='editor-textarea' defaultValue={props.value} onChange={e=>onChange(e)} />
+    <textarea id={props.id} className='editor-textarea' value={props.value} onChange={e=>onChange(e)} />
   );
 }

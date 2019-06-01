@@ -35,7 +35,8 @@ class App extends Component {
     switch (tab) {
       case App.TOOLBAR_ELEMENTS[0]:
         this.setState({
-          leftBarItems: []
+          leftBarItems: [],
+          item: null
         });
         loadBanners().then((data) => {
           this.setState({
@@ -48,7 +49,8 @@ class App extends Component {
 
       case App.TOOLBAR_ELEMENTS[1]:
         this.setState({
-          leftBarItems: []
+          leftBarItems: [],
+          item: null
         });
         loadCategories().then(categories => {
           this.setState({
@@ -67,10 +69,10 @@ class App extends Component {
   }
 
   renderEditor() {
-    switch (this.state.tab) {
+    switch (this.state.currentTab) {
       case App.TOOLBAR_ELEMENTS[0]:
         if (this.state.item){
-          return <BannerEditor item={this.state.item} onSave={this.reloadData} categories={this.state.categories}/>
+          return <BannerEditor item={this.state.item} onSave={this.reloadData} categories={this.state.categories} onDelete={this.reloadData}/>
         }
         break;
       case App.TOOLBAR_ELEMENTS[1]:
@@ -82,8 +84,23 @@ class App extends Component {
   onItemClick = (item) => {
     if (item) {
       this.setState(prev=>({
-
+        ...prev,
+        item: item
       }));
+    }
+  }
+
+  onCreateClick = () => {
+    console.log("on create");
+    switch (this.state.currentTab) {
+      case App.TOOLBAR_ELEMENTS[0]:
+        this.setState(prev=>({
+          ...prev,
+          item: {name: "", price: "", content: ""}
+        }));
+        break;
+      case App.TOOLBAR_ELEMENTS[1]:
+        break;
     }
   }
 
@@ -98,7 +115,13 @@ class App extends Component {
       <Wrapper>
         <Toolbar currentTab={currentTab} items={App.TOOLBAR_ELEMENTS} onChange={this.onTabChange}/>
         <Wrapper horizontal>
-          <LeftBar title={currentTab} items={leftBarItems} onItemClick={this.onItemClick}/>
+          <LeftBar title={currentTab}
+                   items={leftBarItems}
+                   onItemClick={this.onItemClick}
+                   buttonName={currentTab.substring(0,currentTab.length-1)}
+                   onCreateClick={this.onCreateClick}
+
+          />
           {
             this.renderEditor()
           }

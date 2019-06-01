@@ -18,3 +18,7 @@
 .button-black {
     background-color: #282c34;
 }
+
+.button-full {
+    width: 100%;
+}

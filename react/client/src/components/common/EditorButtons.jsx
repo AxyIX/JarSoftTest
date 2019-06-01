@@ -7,7 +7,7 @@ export const EditorButtons = (props) => {
     <div className="editor-buttons-container">
       <Button text={'Save'} onClick={props.onSave}/>
       <div className="horizontal-space"/>
-      <Button text={'Delete'} color={'red'}/>
+      <Button text={'Delete'} color={'red'} onClick={props.onDelete}/>
     </div>
   );
 }
