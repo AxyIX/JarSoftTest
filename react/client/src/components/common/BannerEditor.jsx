@@ -83,47 +83,33 @@ export class BannerEditor extends Component {
     this.setState(prev => ({
       ...prev,
       error: ""
-    }))
+    }));
 
-    if (id) {
-      saveBanner({
-        id,
-        name,
-        price,
-        content
-      }, category).then(
-        () => {
-          this.props.onSave();
-        }
-      ).catch(e => {
-        this.setState(prevState => ({
-          ...prevState,
-          error: e
-        }));
-      });
-    } else {
-      saveBanner({
-        name,
-        price,
-        content
-      }, category).then(
-        () => {
-          this.props.onSave();
-        }
-      ).catch(e => {
-        this.setState(prevState => ({
-          ...prevState,
-          error: e
-        }));
-      });
-    }
+    saveBanner({
+      id,
+      name,
+      price,
+      content
+    }, category).then(
+      () => {
+        this.props.onSave();
+      }
+    ).catch(e => {
+      this.setState(prevState => ({
+        ...prevState,
+        error: e
+      }));
+    });
   }
 
   onDelete = () => {
     if (this.props.item.id) {
-      deleteBanner(this.props.item.id).then().catch();
+      deleteBanner(this.props.item.id).then(() => {
+        this.props.onDelete();
+      }).catch();
+    } else {
+      this.props.onDelete();
     }
-    this.props.onDelete();
   }
 
 
@@ -141,7 +127,7 @@ export class BannerEditor extends Component {
 
 
     return <ContentContainer title={item.id ? (item.name + ' ID: ' + item.id) : 'Create new banner'}>
-      <div className="banner-editor">
+      <div className="editor">
         <EditorTitles>
           {BANNER_FIELDS_TITLES}
         </EditorTitles>

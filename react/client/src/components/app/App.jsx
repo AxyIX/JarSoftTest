@@ -4,6 +4,7 @@ import {Wrapper} from "../page/Wrapper";
 import {LeftBar} from "../page/LeftBar";
 import {loadBanners, loadCategories} from "../API/API";
 import {BannerEditor} from "../common/BannerEditor";
+import {CategoryEditor} from "../common/CategoryEditor";
 
 class App extends Component {
 
@@ -76,6 +77,9 @@ class App extends Component {
         }
         break;
       case App.TOOLBAR_ELEMENTS[1]:
+        if (this.state.item){
+          return <CategoryEditor item={this.state.item} onSave={this.reloadData} onDelete={this.reloadData}/>
+        }
         break;
     }
     return null;
@@ -100,6 +104,10 @@ class App extends Component {
         }));
         break;
       case App.TOOLBAR_ELEMENTS[1]:
+        this.setState(prev=>({
+          ...prev,
+          item: {name: "", reqName: ""}
+        }));
         break;
     }
   }

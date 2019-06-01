@@ -27,6 +27,11 @@ public class Category extends Deleteable {
     public Category() {
     }
 
+    public Category(String name, String reqName) {
+        this.name = name;
+        this.reqName = reqName;
+    }
+
     public Integer getId() {
         return id;
     }

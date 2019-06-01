@@ -12,11 +12,21 @@ export const loadCategories = async () => {
 }
 
 export const saveBanner = async (banner, category) => {
-    const result = await post("/category/" + category + "/banners", banner);
+    const result = await post("/categories/" + category + "/banners", banner);
     return result;
 }
 
 export const deleteBanner = async (id) => {
     const result = await deleteRequest("/banners/"+id);
+    return result;
+}
+
+export const saveCategory = async (category) => {
+    const result = await post("/categories/", category);
+    return result;
+}
+
+export const deleteCategory = async (id) => {
+    const result = await deleteRequest("/categories/"+id);
     return result;
 }
