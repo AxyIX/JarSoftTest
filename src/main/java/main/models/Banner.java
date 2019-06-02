@@ -12,7 +12,7 @@ import java.util.List;
 @SQLDelete(sql = "update banner SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Table(name = "BANNER")
 @Where(clause = "deleted=false")
-public class Banner extends Deleteable {
+public class Banner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

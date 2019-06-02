@@ -1,13 +1,13 @@
 create table if not exists CATEGORY(
     id int auto_increment primary key,
-    name varchar(255) not null,
-    req_name varchar(255) not null,
+    name varchar(255) not null unique,
+    req_name varchar(255) not null unique,
     deleted boolean not null
 );
 
 create table if not exists BANNER(
     id int auto_increment primary key,
-    name varchar(255) not null,
+    name varchar(255) not null unique ,
     price decimal(8,2) not null,
     category_id int not null,
     content text not null,

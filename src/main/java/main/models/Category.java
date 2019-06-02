@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "CATEGORY")
 @SQLDelete(sql = "update category SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "deleted=false")
-public class Category extends Deleteable {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

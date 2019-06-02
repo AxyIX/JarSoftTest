@@ -1,6 +1,7 @@
 package main.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -10,13 +11,14 @@ public abstract class Deleteable {
 
     @JsonIgnore
     @Column(name = "deleted", columnDefinition = "boolean default false")
-    private boolean deleted = false;
+    @Type(type = "org.hibernate.type.BooleanType")
+    private Boolean deleted = false;
 
-    public boolean isDeleted() {
+    public Boolean getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
 }
