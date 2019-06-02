@@ -7,7 +7,7 @@ export const get = async (url) => {
   } catch (e) {
     throw e.response.data;
   }
-}
+};
 
 export const post = async (url, data) => {
   try {
@@ -16,7 +16,8 @@ export const post = async (url, data) => {
   } catch (e) {
     throw e.response.data;
   }
-}
+};
+
 export const deleteRequest = async (url, data) => {
   try {
     const result = await axios.delete(url, data);
@@ -24,4 +25,4 @@ export const deleteRequest = async (url, data) => {
   } catch (e) {
     throw e.response.data;
   }
-}
+};

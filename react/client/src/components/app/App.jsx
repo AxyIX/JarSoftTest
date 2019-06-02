@@ -30,7 +30,7 @@ class App extends Component {
 
   reloadData = () => {
     this.loadData(this.state.currentTab);
-  }
+  };
 
   loadData = (tab) => {
     switch (tab) {
@@ -62,12 +62,12 @@ class App extends Component {
         });
         break;
     }
-  }
+  };
 
   onTabChange = (tab) => {
     this.setState({currentTab: tab});
     this.loadData(tab);
-  }
+  };
 
   renderEditor() {
     switch (this.state.currentTab) {
@@ -92,7 +92,7 @@ class App extends Component {
         item: item
       }));
     }
-  }
+  };
 
   onCreateClick = () => {
     console.log("on create");
@@ -110,7 +110,7 @@ class App extends Component {
         }));
         break;
     }
-  }
+  };
 
   render() {
 

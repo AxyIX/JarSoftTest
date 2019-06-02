@@ -12,4 +12,4 @@ export const Notify = (props) => {
       }
     </div>
   );
-}
+};

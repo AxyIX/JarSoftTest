@@ -19,4 +19,4 @@ export const ToolbarItem = (props) => {
             {title}
         </div>
     );
-}
+};

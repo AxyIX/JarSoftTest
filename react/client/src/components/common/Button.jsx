@@ -21,7 +21,7 @@ export const Button = (props) => {
       default:
         return 'button-black';
     }
-  }
+  };
 
   return <button className={classNames('button', getColorStyle(), full ? 'button-full' : "")} onClick={onClick}>{text ? text : children}</button>
-}
+};

@@ -17,11 +17,11 @@ export class LeftBar extends Component {
     this.setState({
       filter: e.target.value
     });
-  }
+  };
 
   onClickItem = (item) => {
     this.props.onItemClick(item);
-  }
+  };
 
   render() {
 

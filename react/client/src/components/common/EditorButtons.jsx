@@ -10,4 +10,4 @@ export const EditorButtons = (props) => {
       <Button text={'Delete'} color={'red'} onClick={props.onDelete}/>
     </div>
   );
-}
+};

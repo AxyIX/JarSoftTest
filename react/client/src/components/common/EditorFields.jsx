@@ -11,4 +11,4 @@ export const EditorFields = (props) => {
       })}
     </div>
   );
-}
+};

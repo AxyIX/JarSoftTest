@@ -28,7 +28,6 @@ export class CategoryEditor extends Component {
         error: ""
       };
     }
-    ;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,7 +46,7 @@ export class CategoryEditor extends Component {
         category: {...this.state.category, [field]: value}
       })
     );
-  }
+  };
 
   onSave = () => {
 
@@ -69,7 +68,7 @@ export class CategoryEditor extends Component {
         error: e
       }));
     })
-  }
+  };
 
   onDelete = () => {
     if (this.props.item.id) {
@@ -79,8 +78,7 @@ export class CategoryEditor extends Component {
     } else {
       this.props.onDelete();
     }
-
-  }
+  };
 
 
   render() {

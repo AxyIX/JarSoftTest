@@ -5,7 +5,7 @@ export const EditorInput = (props) => {
 
   const onChange = (event) => {
     props.onChange(event.target.value, props.id);
-  }
+  };
 
     const {
       value,
@@ -15,4 +15,4 @@ export const EditorInput = (props) => {
     return (
       <input type={"text"} id={id} className='editor-input' value={value} onChange={(e)=>onChange(e)}/>
     );
-}
+};

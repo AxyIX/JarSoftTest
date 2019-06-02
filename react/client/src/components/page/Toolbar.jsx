@@ -11,7 +11,7 @@ export class Toolbar extends Component {
     if (tab !== this.props.currentTab){
       this.props.onChange(tab);
     }
-  }
+  };
 
   render() {
     const {

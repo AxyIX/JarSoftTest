@@ -5,7 +5,7 @@ export const CategorySelector = (props) => {
 
   const onChange = (event) => {
     props.onChange(event.target.value, props.id);
-  }
+  };
 
   return (
     <select id={props.id}
@@ -17,4 +17,4 @@ export const CategorySelector = (props) => {
       })}
     </select>
   );
-}
+};

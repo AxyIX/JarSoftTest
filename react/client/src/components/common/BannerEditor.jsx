@@ -34,7 +34,6 @@ export class BannerEditor extends Component {
         error: ""
       };
     }
-    ;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -68,7 +67,7 @@ export class BannerEditor extends Component {
         banner: {...this.state.banner, [field]: value}
       })
     );
-  }
+  };
 
   onSave = () => {
 
@@ -100,7 +99,7 @@ export class BannerEditor extends Component {
         error: e
       }));
     });
-  }
+  };
 
   onDelete = () => {
     if (this.props.item.id) {
@@ -110,7 +109,7 @@ export class BannerEditor extends Component {
     } else {
       this.props.onDelete();
     }
-  }
+  };
 
 
   render() {

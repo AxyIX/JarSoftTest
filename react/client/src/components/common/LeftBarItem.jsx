@@ -11,4 +11,4 @@ export const LeftBarItem = (props) => {
       <span onClick={()=>props.onClick(item)}>{item.name}</span>
     </div>
   );
-}
+};
