@@ -7,16 +7,17 @@ import java.util.Date;
 
 @Entity
 @Table(name = "REQUEST")
-public class Request extends Deleteable {
+public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "user_agent")
+    @Column(name = "user_agent", columnDefinition = "TEXT")
     private String userAgent;
-    @Column(name = "ip_address")
+    @Column(name = "ip_address", columnDefinition = "VARCHAR(255)")
     private String ipAddress;
+    @Column(columnDefinition = "DATETIME")
     private Date date;
 
     @JsonIgnore

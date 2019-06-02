@@ -17,8 +17,11 @@ public class Banner extends Deleteable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
+    @Column(columnDefinition = "DECIMAL(8,2)", nullable = false)
     private double price;
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
     @ManyToOne(fetch = FetchType.EAGER)

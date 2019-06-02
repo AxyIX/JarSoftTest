@@ -45,7 +45,7 @@ export class LeftBar extends Component {
         </div>
         <div className="left-bar-items">
           {
-            items && items.length > 0 ? items.filter((item, i) => {
+            items ? items.filter((item, i) => {
                 return item.name.toLowerCase().includes(this.state.filter.toLowerCase());
               }).map((item, i) => {
                 return <LeftBarItem key={i} item={item} onClick={this.onClickItem}/>;

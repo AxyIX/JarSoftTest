@@ -11,14 +11,14 @@ class App extends Component {
   static TOOLBAR_ELEMENTS = [
     "Banners",
     "Categories"
-  ]
+  ];
 
   constructor(props) {
     super(props);
 
     this.state = {
       currentTab: App.TOOLBAR_ELEMENTS[0],
-      leftBarItems: [],
+      leftBarItems: null,
       categories: [],
       item: null
     };
@@ -36,7 +36,7 @@ class App extends Component {
     switch (tab) {
       case App.TOOLBAR_ELEMENTS[0]:
         this.setState({
-          leftBarItems: [],
+          leftBarItems: null,
           item: null
         });
         loadBanners().then((data) => {
@@ -50,7 +50,7 @@ class App extends Component {
 
       case App.TOOLBAR_ELEMENTS[1]:
         this.setState({
-          leftBarItems: [],
+          leftBarItems: null,
           item: null
         });
         loadCategories().then(categories => {

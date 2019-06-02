@@ -25,8 +25,15 @@ public class BannerController {
     private CategoryRepo categoryRepo;
 
     @PostMapping(path = "categories/{categoryId}/banners")
-    public ResponseEntity<String> addNewBanner(@PathVariable(value = "categoryId") Integer categoryId,
+    public ResponseEntity<String> addNewBanner(@PathVariable(value = "categoryId") String categoryId,
                                                @RequestBody Map<String, String> banner) {
+
+        if(categoryId.isEmpty() || categoryId.equals("undefined") || categoryId.equals("null")){
+            logger.error("Try to save banner with empty category.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Categories is empty. Add some category at first!");
+        }
+
+        Integer intCategoryId = Integer.parseInt(categoryId);
 
         String id = banner.get("id");
         String name = banner.get("name");
@@ -51,7 +58,7 @@ public class BannerController {
             parsedPrice = Double.parseDouble(price);
         } catch (NumberFormatException e) {
             logger.error("Trying to save banner with non decimal price. Value=" + price);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner price must be decimal!");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner price must be decimal point separated!");
         }
 
         if (id != null) {
@@ -59,7 +66,7 @@ public class BannerController {
             existedBanner.setName(name);
             existedBanner.setContent(content);
             existedBanner.setPrice(parsedPrice);
-            existedBanner.setCategory(categoryRepo.findById(categoryId).get());
+            existedBanner.setCategory(categoryRepo.findById(intCategoryId).get());
             bannerRepo.save(existedBanner);
             logger.info(existedBanner.toString() + " updated.");
             return ResponseEntity.status(HttpStatus.OK).body("");
@@ -70,7 +77,7 @@ public class BannerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Banner with name \"" + name + "\" is already exist");
         }
 
-        Integer newId = bannerRepo.save(new Banner(name, parsedPrice, content, categoryRepo.findById(categoryId).get())).getId();
+        Integer newId = bannerRepo.save(new Banner(name, parsedPrice, content, categoryRepo.findById(intCategoryId).get())).getId();
         logger.info("New banner with id=" + newId + " saved");
         return ResponseEntity.status(HttpStatus.OK).body("");
     }

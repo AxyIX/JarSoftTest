@@ -1,6 +1,8 @@
 package main.controllers;
 
+import main.models.Banner;
 import main.models.Category;
+import main.repos.BannerRepo;
 import main.repos.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,10 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class CategoryController {
+
+    @Autowired
+    private BannerRepo bannerRepo;
 
     @Autowired
     private CategoryRepo categoryRepo;
@@ -54,8 +59,22 @@ public class CategoryController {
 
     @DeleteMapping(path = "/categories/{categoryId}")
     public ResponseEntity<String> deleteCategory(@PathVariable(value = "categoryId") Integer categoryId) {
-        categoryRepo.deleteById(categoryId);
-        return ResponseEntity.status(HttpStatus.OK).body("");
+        Category category = categoryRepo.findById(categoryId).get();
+        List<Banner> banners = bannerRepo.findByCategory(category);
+        if (banners.isEmpty()){
+            categoryRepo.deleteById(categoryId);
+            return ResponseEntity.status(HttpStatus.OK).body("");
+        }
+
+        StringBuilder bannersIDs = new StringBuilder();
+
+        bannersIDs.append(banners.get(0).getId());
+
+        for (int i=2; i<banners.size();i++){
+            bannersIDs.append(", " + banners.get(i));
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Category contains banners " + bannersIDs + "." );
     }
 
     @GetMapping(path = "/categories")

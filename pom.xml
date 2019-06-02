@@ -39,11 +39,10 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
-
     <properties>
         <java.version>1.8</java.version>
+        <start-class>main.Application</start-class>
     </properties>
-
 
     <build>
         <plugins>

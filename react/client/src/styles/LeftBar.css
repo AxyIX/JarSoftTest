@@ -1,5 +1,6 @@
 .left-bar {
     border: 1px solid black;
+    box-sizing: border-box;
     width: 300px;
     margin-right: 20px;
     display: flex;
@@ -25,6 +26,7 @@
     border: none;
     box-shadow: none;
     outline: none;
+    width: 260px;
 }
 
 .left-bar-input > input:focus {
