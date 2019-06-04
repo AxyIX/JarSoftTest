@@ -105,7 +105,12 @@ export class BannerEditor extends Component {
     if (this.props.item.id) {
       deleteBanner(this.props.item.id).then(() => {
         this.props.onDelete();
-      }).catch();
+      }).catch(e => {
+        this.setState(prevState => ({
+          ...prevState,
+          error: e
+        }));
+      });
     } else {
       this.props.onDelete();
     }

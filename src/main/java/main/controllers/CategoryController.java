@@ -74,7 +74,7 @@ public class CategoryController {
             bannersIDs.append(", " + banners.get(i));
         }
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Category contains banners " + bannersIDs + "." );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Category contains banners with IDs: " + bannersIDs + "." );
     }
 
     @GetMapping(path = "/categories")
