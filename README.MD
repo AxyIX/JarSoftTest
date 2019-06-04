@@ -3,7 +3,9 @@
 ### Requirements
 
 JRE: 8 or higher
+
 MAVEN: preferably latest version
+
 MySQL-server: preferably latest version
 
 ### Installation
