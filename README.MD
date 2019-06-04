@@ -26,4 +26,4 @@ db-password=<db user password>
 ```
 If file **dbconfig.properties** does not exist, program will try to create it automatically with default configuration.
 
-- To run the program execute command **java -jar BannerManager-V1.jar** in program folder.
+- To run the program execute command **java -jar BannerManager-V1.jar** in program folder. Program works on port 8080.
