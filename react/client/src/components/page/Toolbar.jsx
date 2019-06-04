@@ -3,10 +3,6 @@ import '../../styles/Toolbar.css';
 import {ToolbarItem} from "../common/ToolbarItem";
 
 export class Toolbar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   onClick = (tab) => {
     if (tab !== this.props.currentTab){
       this.props.onChange(tab);

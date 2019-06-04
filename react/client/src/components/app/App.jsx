@@ -48,7 +48,7 @@ class App extends Component {
         });
         break;
 
-      case App.TOOLBAR_ELEMENTS[1]:
+      default:
         this.setState({
           leftBarItems: null,
           item: null
@@ -76,7 +76,7 @@ class App extends Component {
           return <BannerEditor item={this.state.item} onSave={this.reloadData} categories={this.state.categories} onDelete={this.reloadData}/>
         }
         break;
-      case App.TOOLBAR_ELEMENTS[1]:
+      default:
         if (this.state.item){
           return <CategoryEditor item={this.state.item} onSave={this.reloadData} onDelete={this.reloadData}/>
         }
@@ -103,7 +103,7 @@ class App extends Component {
           item: {name: "", price: "", content: ""}
         }));
         break;
-      case App.TOOLBAR_ELEMENTS[1]:
+      default:
         this.setState(prev=>({
           ...prev,
           item: {name: "", reqName: ""}

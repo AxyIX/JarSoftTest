@@ -7,7 +7,7 @@ import {Notify} from "./Notify";
 import {Footer} from "./Footer";
 import {EditorButtons} from "./EditorButtons";
 import {CATEGORY_FIELDS_TITLES} from "../app/Constants";
-import {deleteBanner, deleteCategory, saveCategory} from "../API/API";
+import {deleteCategory, saveCategory} from "../API/API";
 
 export class CategoryEditor extends Component {
 

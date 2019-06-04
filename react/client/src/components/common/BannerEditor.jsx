@@ -53,7 +53,7 @@ export class BannerEditor extends Component {
       if (data && data.length > 0) {
         this.setState(prevState => ({
           ...prevState,
-          banner: {...this.state.banner, category: item && item.category && item.category.id || data[0].id},
+          banner: {...this.state.banner, category: (item && item.category && item.category.id) || data[0].id},
           categories: data
         }));
       }
