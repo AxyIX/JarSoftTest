@@ -32,8 +32,17 @@ public class DBConfig {
             String dbUser = properties.getProperty("db-user");
             String dbPassword = properties.getProperty("db-password");
 
-            if (dbAddress.isEmpty() || dbPort.isEmpty() || dbName.isEmpty() || dbUser.isEmpty() || dbPassword.isEmpty()) {
-                System.out.println("Not all db configuration exist!");
+            if (dbAddress == null ||
+                    dbPort == null ||
+                    dbName == null ||
+                    dbUser == null ||
+                    dbPassword == null ||
+                    dbAddress.isEmpty() ||
+                    dbPort.isEmpty() ||
+                    dbName.isEmpty() ||
+                    dbUser.isEmpty() ||
+                    dbPassword.isEmpty()) {
+                System.out.println("----------\nNot all db configuration in dbconfig.properties exist!\n----------");
                 return null;
             }
 
@@ -41,7 +50,8 @@ public class DBConfig {
 
         } catch (IOException e) {
 
-            System.out.println("File 'dbconfig.properties' not found. Trying to create default 'dbconfig.properties' file.");
+            System.out.println("----------\nFile 'dbconfig.properties' not found. " +
+                    "Trying to create default 'dbconfig.properties' file.\n----------");
             try {
                 OutputStream fos = new FileOutputStream("dbconfig.properties");
                 properties.setProperty("db-address", DB_ADDRESS);
@@ -52,7 +62,8 @@ public class DBConfig {
                 properties.store(fos, null);
 
             } catch (IOException ex) {
-                System.out.println("Can't find/load/write default dbconfig.properties file! Check writing rights.\nUsing default configuration.");
+                System.out.println("----------\nCan't find/load/write default dbconfig.properties file!" +
+                        " Check writing rights.\nUsing default configuration.\n----------");
             }
         }
         return generateDBConfig(DB_ADDRESS, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD);
