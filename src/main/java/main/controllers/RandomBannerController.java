@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/bid")
@@ -35,7 +35,7 @@ public class RandomBannerController {
         String userAgent = request.getHeader("User-Agent");
         String ipAddress = request.getRemoteAddr();
 
-        Set<Banner> banners;
+        List<Banner> banners;
 
         Category responseCategory = categoryRepo.findByReqName(category);
         if (responseCategory != null){

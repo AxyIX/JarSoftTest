@@ -9,6 +9,6 @@ import java.util.Set;
 
 public interface BannerRepo extends JpaRepository<Banner, Integer> {
     Banner findByName(String name);
-    Set<Banner> findByCategoryOrderByPriceDesc(Category category);
+    List<Banner> findByCategoryOrderByPriceDesc(Category category);
     List<Banner> findByCategory(Category category);
 }
